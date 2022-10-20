@@ -34,7 +34,6 @@ void setup()
 
 void loop()
 {
-  CLK_SIGNAL();
 
   digitalWrite(RST, LOW);
   digitalWrite(RST, HIGH);
@@ -52,6 +51,20 @@ void loop()
 }
 unsigned char GetByte(void)
 { // GetByte() reads a 8-bit serial temperature signal from a DS1620 through the Arduino Mega pin 2 and  returns a 8-bit character.
+  int i; 
+  int data; 
+  int D; 
+ 
+  D = 0; 
+  for (i=0; i<=7; i++) { 
+    digitalWrite(CLK,LOW); 
+    digitalWrite(CLK,HIGH); 
+    pinMode(DQ,INPUT); 
+    data=digitalRead(DQ); 
+    D = D + (data << i); 
+  } 
+  return D; 
+  /*
   pinMode(DQ, INPUT);
   unsigned char temp = 0;
   for (int i = 0; i < 8; i++)
@@ -60,14 +73,31 @@ unsigned char GetByte(void)
     bitWrite(temp, i, digitalRead(DQ));
   }
   return temp;
+  */
 }
+
 void PutByte(unsigned char data)
 { // PutByte() receives a 8-bit character and writes a 8-bit serial signal to a DS1620 through the Arduino Mega pin 2, returning nothing.
+{ 
+  int i; 
+  pinMode(DQ,OUTPUT); 
+  for(i=0; i<=7; i++) { 
+    if(data%2 == 1) 
+      digitalWrite(DQ,HIGH); 
+    else 
+      digitalWrite(DQ,LOW); 
+    digitalWrite(CLK,HIGH); 
+    digitalWrite(CLK,LOW); 
+    data >>= 1; 
+  } 
+} 
+  /*
   pinMode(DQ, OUTPUT);
   for (int i = 0; i < 8; i++)
   {
     digitalWrite(DQ, bitRead(data, i));
   }
+  */
 }
 
 void CLK_SIGNAL(void)
