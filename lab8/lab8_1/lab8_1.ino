@@ -9,6 +9,8 @@
 int ir_pin = A0;
 float dist;
 
+float AI2float(int AI_pin, bool print = false);
+
 void setup()
 {
   Serial.begin(9600);
@@ -23,21 +25,23 @@ void loop()
   Serial.println(" cm");
 }
 
-float AI2float(int AI_pin, bool print = false)
+float AI2float(int AI_pin, bool print)
 {
-  float V = 0.004934434 * (float)analogRead(AI_pin);
+  float ai = (float)analogRead(AI_pin);
+  float V =  1968.8*(1/ai) + 5*(300/(ai+300));
   if (print)
     Serial.print(V);
   return V;
 }
-/* LAB3_2 code
- * Multimeter   =   Arduino Integer
- * 5.051 VDC    =   1023
- * 3.449 VDC    =   700
- * 3.015 VDC    =   611
- * 2.618 VDC    =   530
- * 2.157 VDC    =   436
- * 0.001 mVDC   =   0
+/* LAB3_2 code   
+ * Dist   =   Arduino Integer
+ * 50 cm  =   41
+ * 40 cm  =   53
+ * 30 cm  =   83
+ * 20 cm  =   133
+ * 10 cm  =   260
+ * 7 cm   =   359
+ * 4 cm   =   523
  *
  * ADC to Voltage: V = 0.004934434 * A
  */
