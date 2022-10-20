@@ -17,7 +17,6 @@ int num1=0, num2=0;
 void loop() {
 // put your main code here, to run repeatedly:
 //  Serial.println("Mechatronics");
-
 //Send data only when you receive data.
 //Wait until there is something to read:
   while (Serial.available() == 0) {}
