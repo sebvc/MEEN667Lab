@@ -36,15 +36,8 @@ void loop() {
 
 }
 
-
-int XY_convert(float X_coordinate, float Y_coordinate) {
+int Coord2Step(float Coordinate, float Radius) {
   // Converts XY float to number of steps as an integer
-  float X_radians = X_coordinate/X_radius;
-  int X_steps = X_radians * stepsPerRad; // Not sure if you can turn float*float into an integer
-
-  float Y_radians = Y_coordinate/Y_radius;
-  int Y_steps = Y_radians * stepsPerRad;
-
-  return X_steps, Y_steps;
-
+  float Radians = Coordinate/Radius;
+  return (int)(Radians * stepsPerRad); // Not sure if you can turn float*float into an integer
 }
