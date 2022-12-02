@@ -20,7 +20,7 @@ class dynStepper{
     dynStepper(uint8_t _pinA, uint8_t _pinB, uint8_t _pinC, uint8_t _pinD);
     void update(uint16_t loopTime);
     void setTarget(long int _target){targetPos = _target;}
-    int32_t getError(void){return targetPos-currentPos;}
+    int32_t getError(void){return currentPos-targetPos;}
     void setStepDelay(uint16_t _stepDelay){stepDelay = _stepDelay;}
     void setZero(){currentPos = 0; targetPos = 0;}
 };

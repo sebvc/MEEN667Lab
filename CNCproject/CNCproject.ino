@@ -132,6 +132,13 @@ void loop()
       break;
       case 3:
        //moving
+       if ((Xstepper.getError() < 0) && (digitalRead(LIM1NO) == closed)) {
+         //Serial.println(Xstepper.getError());
+         Xstepper.setZero();
+       }
+       if ((Ystepper.getError() < 0) && (digitalRead(LIM2NO) == closed)) {
+         Ystepper.setZero();
+       }
        if ((Xstepper.getError()==0) && (Ystepper.getError()==0)) {
          sendData("finish");
          raspberyInstruct=5;

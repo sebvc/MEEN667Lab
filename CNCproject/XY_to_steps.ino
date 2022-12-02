@@ -21,20 +21,20 @@ float Y_coordinate;
 float Y_diameter;
 float Y_radius = Y_diameter / 2;
 
-void setup() {
-  // put your setup code here, to run once:
-  Serial.begin(9600);
-  pinMode(input_pin, INPUT);
-  pinMode(output_pin, OUTPUT);
+// void setup() {
+//   // put your setup code here, to run once:
+//   Serial.begin(9600);
+//   pinMode(input_pin, INPUT);
+//   pinMode(output_pin, OUTPUT);
 
-}
+// }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-  Serial.println("Alan can code C");
-  X_coordinate = 5;
+// void loop() {
+//   // put your main code here, to run repeatedly:
+//   Serial.println("Alan can code C");
+//   X_coordinate = 5;
 
-}
+// }
 
 int Coord2Step(float Coordinate, float Radius) {
   // Converts XY float to number of steps as an integer
